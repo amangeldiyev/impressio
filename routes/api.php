@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,9 @@ Route::post('/register', [RegisterController::class, 'register']);
 // Route::post('/reset-password', [PasswordResetController::class, 'store']);
 
 Route::group(['middleware' => 'auth:sanctum'], function ($route) {
+    $route->post('/logout', [LogoutController::class, 'logout']);
     $route->get('/user', [ProfileController::class, 'show']);
     $route->put('/user', [ProfileController::class, 'store']);
     
-    $route->post('/logout', [LogoutController::class, 'logout']);
+    $route->resource('buildings', BuildingController::class);
 });
