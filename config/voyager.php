@@ -144,7 +144,8 @@ return [
         ],
 
         'widgets' => [
-
+            \TCG\Voyager\Widgets\UserDimmer::class,
+            \App\Widgets\EventDimmer::class
         ],
 
     ],
