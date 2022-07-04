@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBuildingRequest;
+use App\Http\Requests\UpdateBuildingRequest;
 use App\Http\Responses\ApiResponse;
 use App\Models\Building;
-use Illuminate\Http\Request;
 
 class BuildingController extends Controller
 {
@@ -45,21 +45,21 @@ class BuildingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Building  $buidling
+     * @param  \App\Models\Building  $building
      * @return \Illuminate\Http\Response
      */
-    public function show(Building $buidling)
+    public function show(Building $building)
     {
-        //
+        return new ApiResponse($building);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Building  $buidling
+     * @param  \App\Models\Building  $building
      * @return \Illuminate\Http\Response
      */
-    public function edit(Building $buidling)
+    public function edit(Building $building)
     {
         //
     }
@@ -67,23 +67,27 @@ class BuildingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Building  $buidling
+     * @param  \App\Http\Requests\UpdateBuildingRequest  $request
+     * @param  \App\Models\Building  $building
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Building $buidling)
+    public function update(UpdateBuildingRequest $request, Building $building)
     {
-        //
+        $building->update($request->validated());
+
+        return new ApiResponse($building);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Building  $buidling
+     * @param  \App\Models\Building  $building
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Building $buidling)
+    public function destroy(Building $building)
     {
-        //
+        $building->delete();
+
+        return new ApiResponse();
     }
 }
