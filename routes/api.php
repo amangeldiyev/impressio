@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
@@ -31,4 +32,5 @@ Route::group(['middleware' => 'auth:sanctum'], function ($route) {
     $route->apiResource('buildings', BuildingController::class);
     $route->apiResource('events', EventController::class);
     $route->apiResource('tickets', TicketController::class);
+    $route->apiResource('bookings', BookingController::class);
 });
